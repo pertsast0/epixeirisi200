@@ -1,0 +1,17 @@
+{
+  "name": "epixeirisi200",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^4.10.0",
+    "jquery": "^3.2.1",
+    "web3": "^1.0.0-beta.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
