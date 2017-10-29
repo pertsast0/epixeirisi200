@@ -48,37 +48,19 @@ window.App = {
     status.innerHTML = message;
   },
 
-  refreshBalance: function() {
+  sendHelp: function() {
     var self = this;
-
-    var meta;
-    EmergencyCall.deployed().then(function(instance) {
-      meta = instance;
-      return meta.getBalance.call(account, {from: account});
-    }).then(function(value) {
-      var balance_element = document.getElementById("balance");
-      balance_element.innerHTML = value.valueOf();
-    }).catch(function(e) {
-      console.log(e);
-      self.setStatus("Error getting balance; see log.");
-    });
-  },
-
-  sendCoin: function() {
-    var self = this;
-
-    var amount = parseInt(document.getElementById("amount").value);
-    var receiver = document.getElementById("receiver").value;
 
     this.setStatus("Initiating transaction... (please wait)");
 
     var meta;
     EmergencyCall.deployed().then(function(instance) {
       meta = instance;
-      return meta.sendEmergencyCall(receiver, {from: account});
+      return meta.sendEmergencyCall({from: account});
     }).then(function() {
-      self.setStatus("Transaction complete!");
-      //self.refreshBalance();
+      meta.getTotalEmergencies.call().then(function(result){
+        self.setStatus("Transaction complete! Total emegencies: " + result);        
+      })
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error sending coin; see log.");
